@@ -8,7 +8,7 @@ datasource db {
 }
 
 model groups {
-  pk_id        Int            @id @default(autoincrement())
+  pk_id        BigInt         @id @default(autoincrement())
   group_name   String         @db.VarChar(255)
   date_created DateTime?      @default(now()) @db.Timestamp(6)
   usergroups   usergroups[]
@@ -16,9 +16,9 @@ model groups {
 }
 
 model usergroups {
-  pk_id        Int       @id @default(autoincrement())
-  fk_user_id   Int       @default(autoincrement())
-  fk_group_id  Int       @default(autoincrement())
+  pk_id        BigInt    @id @default(autoincrement())
+  fk_user_id   BigInt
+  fk_group_id  BigInt
   date_created DateTime? @default(now()) @db.Timestamp(6)
   role         Int
   groups       groups    @relation(fields: [fk_group_id], references: [pk_id], onDelete: NoAction, onUpdate: NoAction)
@@ -26,9 +26,9 @@ model usergroups {
 }
 
 model userproducts {
-  pk_id         Int       @id @default(autoincrement())
-  fk_user_id    Int       @default(autoincrement())
-  fk_group_id   Int       @default(autoincrement())
+  pk_id         BigInt    @id @default(autoincrement())
+  fk_user_id    BigInt
+  fk_group_id   BigInt
   category_name String    @db.VarChar(255)
   amount        Int
   date_created  DateTime? @default(now()) @db.Timestamp(6)
@@ -37,7 +37,7 @@ model userproducts {
 }
 
 model users {
-  pk_id        Int            @id @default(autoincrement())
+  pk_id        BigInt         @id @default(autoincrement())
   user_name    String         @db.VarChar(255)
   login_name   String         @db.VarChar(255)
   password     String         @db.VarChar(255)

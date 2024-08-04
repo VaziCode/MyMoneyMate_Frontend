@@ -135,7 +135,6 @@ import { Router, useRouter } from "next/router"
 import React from "react"
 
 const Login = function(){
-    debugger;
     const loginRef = React.useRef<any>()
     const passwordKeyRef = React.useRef<any>()
     const [error, setError] = React.useState<string>("")
@@ -145,7 +144,6 @@ const Login = function(){
         e.preventDefault()
         try {
             setError('')
-            debugger;
             const res  =   await fetch("/api/auth", {
                 method: "POST",
                 body: JSON.stringify({
